@@ -70,11 +70,11 @@ func FindTrains(departureStation, arrivalStation, criteria string) (Trains, erro
 	filtered := filterTrains(trains, departure, arrival)
 	switch crit {
 	case priceCriteria:
-		sort.Slice(filtered, filtered.byPrice)
+		sort.SliceStable(filtered, filtered.byPrice)
 	case arrivalCriteria:
-		sort.Slice(filtered, filtered.byArrival)
+		sort.SliceStable(filtered, filtered.byArrival)
 	case departureCriteria:
-		sort.Slice(filtered, filtered.byDeparture)
+		sort.SliceStable(filtered, filtered.byDeparture)
 	}
 	if len(filtered) >= 3 {
 		return filtered[:3], nil

@@ -125,17 +125,11 @@ func parseParams(departureStation, arrivalStation, criteria string) (departure, 
 		return 0, 0, "", errors.New("empty arrival station")
 	}
 	departure, err = strconv.Atoi(departureStation)
-	if err != nil {
-		return 0, 0, "", err
-	}
-	arrival, err = strconv.Atoi(arrivalStation)
-	if err != nil {
-		return 0, 0, "", err
-	}
-	if departure <= 0 {
+	if err != nil || departure <= 0 {
 		return 0, 0, "", errors.New("bad departure station input")
 	}
-	if arrival <= 0 {
+	arrival, err = strconv.Atoi(arrivalStation)
+	if err != nil || arrival <= 0 {
 		return 0, 0, "", errors.New("bad arrival station input")
 	}
 	switch criteria {
